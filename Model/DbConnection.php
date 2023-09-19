@@ -1,30 +1,32 @@
 <?php
 namespace Model\DbConnection;
-abstract class DbConnection
+ class DbConnection {
+
+private static $servername = 'localhost';
+private static $username_b = 'root';
+private static $password_b = '';
+private static $database = 'moduleconnexionb2';
+private static ?\PDO $_db = null;
+
+public static function getDb()
 {
-    private $pdo;
-
-    protected function __construct()
-    {
-        $this->connect();
-    }
-
-    private function connect()
-    {
-        $host = 'localhost';
-        $dbname = 'moduleconnexionb2';
-        $username = 'root';
-        $password = '';
+    if (!self::$_db) {
         try {
-            $this->pdo = new \PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-            $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            // get database infos from ini file in config folder
+            // $db = parse_ini_file('..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'db.ini');
+
+            // define PDO dsn with retrieved data
+            // self::$_db = new \PDO($db['type'] . ':dbname=' . $db['name'] . ';host=' . $db['host'] . ';charset=' . $db['charset'], $db['user'], $db['password']);
+
+            self::$_db = new \PDO('mysql:dbname=' . self::$database . ';host=' . self::$servername . ';charset=utf8mb4', self::$username_b, self::$password_b);
+
+            // prevent emulation of prepared requests
+            self::$_db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         } catch (\PDOException $e) {
-            die("Erreur de connexion : " . $e->getMessage());
+            header("HTTP/1.1 403 Acces refused to the database");
+            die();
         }
     }
-
-    protected function getDb()
-    {
-        return $this->pdo;
-    }
+    return self::$_db;
+}
 }
