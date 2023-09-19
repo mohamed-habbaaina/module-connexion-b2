@@ -26,7 +26,7 @@ if(isset($_POST['login'])){
         $regExpName = '/^[A-Za-z][A-Za-z0-9]{2,15}$/';
         
         if(!preg_match($regExpName,$firstName) || !preg_match($regExpName,$lastName)){
-            $respons[] = 'Note valide, minimum 2 character !';
+            $respons['Name'] = 'Note valide, minimum 2 character !';
         }
         
         // regExp valid Password: strlen >7, accept only [A-Za-z0-9] && minimum 1 lower case 1 upper case 1 number.
@@ -34,26 +34,25 @@ if(isset($_POST['login'])){
         $regExpPass = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/';
         
         if(!preg_match($regExpPass,$password)){
-            $respons[] = 'Note valid, Minimum 8 characters, 1 Upper case, 1 LOwer case, 1 number !';
+            $respons['Password'] = 'Note valid, Minimum 8 characters, 1 Upper case, 1 Lower case, 1 number !';
         }
         
         if($password !== $rePass){
             
-            $respons[] = 'Password not match !';
+            $respons['RePassword'] = 'Password not match !';
         }
         
         if(empty($respons)){
             
             if(!$modelUser->check_DB($login)){
                 
-                // var_dump($_POST);
                 $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
                 $modelUser->register($login, $firstName, $lastName, $password);
                 $respons['ok'] = 'Register succes !';
                 $_SESSION['login'] = $login;
                 
             } else {
-                $respons[] = 'Login exist in database !';
+                $respons['login'] = 'Login exist in database !';
             }
         }
     } else {
