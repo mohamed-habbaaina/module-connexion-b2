@@ -1,8 +1,8 @@
 <?php
 namespace Model\ModelUser;
 use Model\DbConnection\DbConnection;
-require_once ('./DbConnection.php');
-class ModelUser extends DbConnection {
+require_once ('DbConnection.php');
+class ModelUser {
     public function __construct()
     {
 
@@ -18,10 +18,11 @@ class ModelUser extends DbConnection {
         return $input;
     }
 
+    // Check if login exists in the database
     public function check_DB(string $login): array|bool
     {
-        $requestCheck = "SELECT * FROM `user` WHERE login=:login";
-        $data = $this->getDb()->prepare($requestCheck);
+        $requestCheck = "SELECT * FROM `user` WHERE `login`=:login";
+        $data = DbConnection::getDb()->prepare($requestCheck);
         $data->bindParam(':login', $login);
         $data->execute();
         return $data->fetch(\PDO::FETCH_ASSOC) ?? false;
@@ -34,7 +35,7 @@ class ModelUser extends DbConnection {
     {
             $requestInsert = "INSERT INTO `user` (`login`, `firstname`, `lastname`, `password`) 
                                 VALUE (:login, :firstname, :lastname, :password)";
-            $request = $this->getDb()->prepare($requestInsert);
+            $request = DbConnection::getDb()->prepare($requestInsert);
             $request->bindParam(':login', $login);
             $request->bindParam(':firstname', $firstname);
             $request->bindParam(':lastname', $lastname);
@@ -42,8 +43,4 @@ class ModelUser extends DbConnection {
             $request->execute();
     }
 
-   
-
-
-
-}
+    //
