@@ -21,9 +21,9 @@ if(isset($_POST['login'])){
         //****** */ validation inputs regExp.
         // **********************************
         
-        // regExp valid username: strlen > 2, accept only [A-Za-z0-9].
+        // regExp valid first & last name: strlen > 2, accept only [A-Za-z0-9].
         
-        $regExpName = '/^[A-Za-z][A-Za-z0-9]{2,15}$/';
+        $regExpName = '/^[A-Za-z][A-Za-z0-9]{1,15}$/';
         
         if(!preg_match($regExpName,$firstName) || !preg_match($regExpName,$lastName)){
             $respons['Name'] = 'Note valide, minimum 2 character !';
