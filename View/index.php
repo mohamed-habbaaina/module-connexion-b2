@@ -1,36 +1,35 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="./js/authont.js"></script>
     <title>Home</title>
 </head>
 <body>
-    <?php //require_once('./inscription.php'); ?>
 
-    <form action="" method="post" id="formRegister">
+<header>
+    <?php
+        if(isset($_SESSION['autoris']) && $_SESSION['autoris'] === 'ok' && $_SESSION['login'] === 'admiN1337$'){ ?>
+            <ul>
+                <li><a href="./admin.php">Admin</a></li>
+                <li><a href="./profil.php">Profil</a></li>
+                <li><a href="../Controller/deconnect.php">Deconnection</a></li>
+            </ul>
+        <?php } elseif (isset($_SESSION['autoris']) && $_SESSION['autoris'] === 'ok') { ?>
             
-            <h1>Inscription</h1>
-            
-            <label for="login">Login</label>
-            <input type="login" name="login" placeholder="Your login ...">
-            
-            <label for="firstName">FirstName</label>
-            <input type="text" name="firstName" placeholder="Your FirstName ...">
+            <li><a href="./profil.php">Profil</a></li>
+            <li><a href="../Controller/deconnect.php">Deconnection</a></li>
+            <?php } else{ ?>
 
-            <label for="lastName">LastName</label>
-            <input type="text" name="lastName" placeholder="Your lastName ...">
-            
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Your  Password ...">
-            
-            <label for="rePass">Confirmer Password</label>
-            <input type="password" name="rePass" placeholder="Confirm Password ...">
-            
-            <button class="btn">Register</button>
-        </form>
+            <li><a href="./connexion.php">Connection</a></li>
+            <li><a href="./inscription.php">Register</a></li>
+    <?php } ?>
 
-        <div class="alert"></div>
+</header>
+
+    
 </body>
 </html>
