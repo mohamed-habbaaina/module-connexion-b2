@@ -49,6 +49,7 @@ if(isset($_POST['login'])){
                 $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
                 $modelUser->register($login, $firstName, $lastName, $password);
                 $respons['ok'] = 'Register succes !';
+                
                 $_SESSION['login'] = $login;
                 
             } else {

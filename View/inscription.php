@@ -1,25 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./js/authont.js"></script>
+    <title>Register</title>
+</head>
+<body>
+
 <form action="" method="post" id="formRegister">
             
-            <h1>Inscription</h1>
+            <h1>Register</h1>
             
             <label for="login">Login</label>
             <input type="login" name="login" placeholder="Your login ...">
-            <small></small>
             
             <label for="firstName">FirstName</label>
             <input type="text" name="firstName" placeholder="Your FirstName ...">
-            <small></small>
 
             <label for="lastName">LastName</label>
             <input type="text" name="lastName" placeholder="Your lastName ...">
             
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Your  Password ...">
-            <small></small>
             
-            <label for="rePass">Confirmer Password</label>
+            <label for="rePass">Confirm Password</label>
             <input type="password" name="rePass" placeholder="Confirm Password ...">
-            <small></small>
             
             <button class="btn">Register</button>
         </form>
+
+        <div class="alert"></div>
+
+
+</body>
+</html>
