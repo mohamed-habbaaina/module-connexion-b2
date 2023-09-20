@@ -43,83 +43,35 @@ class ModelUser {
             $request->execute();
     }
 
-    //
-    public function connection($login, $password): bool
+    // Connection
+    public function connection(string $login, string $password): bool
     {
 
         $data = $this->check_DB($login);
 
-        if(!empty($data)):
+        if(!empty($data)){
 
-            $password_db = $data['password']; // il faux faire un vardump
+            $password_db = $data['password'];
             
+
                 // verifier le password Haché.
-                if (password_verify($password, $password_db)):
+                if (password_verify($password, $password_db)){
                   
                     return true;
-                else:
-                     return false;
-                endif;
-            else:
-                return false;
-        endif;
-    }
 
-    // ** GETTERS: ID & Role
+                }else{
 
-
-    public function getId($username): int
-    {
-        $data = $this->check_DB($username);
-
-        return $data[0]['id'];
-    }
-
-
-    public function getRole($username): string
-    {
-        $data = $this->check_DB($username);
-
-        return $data[0]['role'];
-    }
-
-    public function isConnected(): bool
-    {
-        if(isset($_SESSION['role'])):
-            return true;
-        else:
+                    return false;
+                }
+        }else{
             return false;
-        endif;
+        }
     }
 
-    /**
-     * Destroy all variables of the current session, and Destroy the current session
-     */
     public function deconnect(): void
     {
-        $_SESSION = array(); 
+        $_SESSION = []; 
         session_unset();
         session_destroy();
     }
-
-    /**
-     * check if user is in database
-     * can be used to test if logged user still exists in database
-     * @param int $id representing user id
-     * @return boolean, depending if the query find the user
-     */
-    public function isInDb(int $id): bool {
-        $sql = 'SELECT COUNT(id) FROM users WHERE id = :id';
-
-        $select = DbConnection::getDb()->prepare($sql);
-
-        $select->bindParam(':id', $id, \PDO::PARAM_INT);
-
-        $select->execute();
-
-        return $select->fetchColumn() > 0;
-    }
-
-
-
 }
