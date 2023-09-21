@@ -1,0 +1,21 @@
+main{
+    max-height: 92%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+main h1{
+    margin: 50px;
+}
+
+thead, th, tbody, td{
+    border: solid 1px black;
+    padding: 10px;
+}
+th{
+    background-color: black;
+    color: white;
+}
