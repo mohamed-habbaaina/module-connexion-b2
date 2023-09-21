@@ -6,6 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
     <title>Home</title>
 </head>
 <body>
@@ -19,13 +20,17 @@ session_start();
                 <li><a href="../Controller/deconnect.php">Deconnection</a></li>
             </ul>
         <?php } elseif (isset($_SESSION['autoris']) && $_SESSION['autoris'] === 'ok') { ?>
-            
-            <li><a href="./profil.php">Profil</a></li>
-            <li><a href="../Controller/deconnect.php">Deconnection</a></li>
-            <?php } else{ ?>
+            <ul>
 
-            <li><a href="./connexion.php">Connection</a></li>
-            <li><a href="./inscription.php">Register</a></li>
+                <li><a href="./profil.php">Profil</a></li>
+                <li><a href="../Controller/deconnect.php">Deconnection</a></li>
+            </ul>
+            <?php } else{ ?>
+            <ul>
+
+                <li><a href="./connexion.php">Connection</a></li>
+                <li><a href="./inscription.php">Register</a></li>
+            </ul>
     <?php } ?>
 
 </header>

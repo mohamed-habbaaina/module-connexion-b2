@@ -12,6 +12,8 @@ if(!isset($_SESSION['autoris']) || $_SESSION['autoris'] !== 'ok' || $_SESSION['l
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/admin.css">
     <script defer src="./js/admin.js"></script>
     <title>Admin</title>
 </head>

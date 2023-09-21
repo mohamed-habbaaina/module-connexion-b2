@@ -11,6 +11,8 @@ if(!isset($_SESSION['autoris']) || $_SESSION['autoris'] !== 'ok')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/connect.css">
     <script defer src="./js/profil.js"></script>
     <title>Profil</title>
 </head>
@@ -25,12 +27,15 @@ if(!isset($_SESSION['autoris']) || $_SESSION['autoris'] !== 'ok')
                 <li><a href="../Controller/deconnect.php">Deconnection</a></li>
             </ul>
         <?php } else{ ?>
-            
-            <li><a href="./">Home</a></li>
-            <li><a href="../Controller/deconnect.php">Deconnection</a></li>
+            <ul>
+
+                <li><a href="./">Home</a></li>
+                <li><a href="../Controller/deconnect.php">Deconnection</a></li>
+            </ul>
             <?php } ?>
 </header>
 <main>
+    <div class="alert"></div>
 
     <form action="" method="post" id="formProfil">
         
@@ -54,7 +59,6 @@ if(!isset($_SESSION['autoris']) || $_SESSION['autoris'] !== 'ok')
         <button class="btn">Submit</button>
     </form>
     
-    <div class="alert"></div>
     
 </main>
 
